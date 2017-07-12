@@ -12,12 +12,7 @@ public class StoreItem {
     private int recent;
     private double distance;
 
-    public StoreItem(String name, String description){
-        this.name = name;
-        this.description = description;
-    }
-
-    public StoreItem(String name, String description, int popularity, int recent, int distance){
+    public StoreItem(String name, String description, int popularity, int recent, double distance){
         this.name = name;
         this.description = description;
         this.isChecked = false;

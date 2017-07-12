@@ -25,8 +25,9 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);;
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("맛집리스트");
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -62,10 +63,14 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setStoreContent() {
-        String title = "춘천닭갈비";
-        String content = "싸고 맛있다.";
-        StoreItem item = new StoreItem(title, content);
-        for(int i = 0; i < 10; i++){
+        String[] titleList = getResources().getStringArray(R.array.store_name_array);
+        String[] descList = getResources().getStringArray(R.array.store_desc_array);
+        int[] popularityList = getResources().getIntArray(R.array.store_popularity_array);
+        int[] recentList = getResources().getIntArray(R.array.store_recent_array);
+        int[] distanceList = getResources().getIntArray(R.array.store_distance_array);
+
+        for(int i = 0; i < titleList.length; i++){
+            StoreItem item = new StoreItem(titleList[i], descList[i], popularityList[i], recentList[i], distanceList[i]);
             adapter.addItem(item);
         }
 
@@ -85,9 +90,7 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         if (id == R.id.nav_camera) {
 
         } else if (id == R.id.nav_gallery) {
