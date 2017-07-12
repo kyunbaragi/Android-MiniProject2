@@ -33,28 +33,28 @@
             app:layout_collapseMode="pin">
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/btn_distance"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="A" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/btn_popularity"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="B" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/btn_recent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="C" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/btn_change_layout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -65,14 +65,5 @@
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_main"/>
-
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_dialer" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -29,6 +29,18 @@ public class StoreItem {
         return description;
     }
 
+    public int getPopularity() {
+        return popularity;
+    }
+
+    public int getRecent() {
+        return recent;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
     public boolean isChecked() {
         return isChecked;
     }
