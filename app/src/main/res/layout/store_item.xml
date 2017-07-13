@@ -24,12 +24,12 @@
                 android:id="@+id/iv_store_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="@dimen/item_inner_margin"
                 android:scaleType="centerCrop" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
@@ -37,16 +37,16 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:layout_margin="8dp"
+                    android:layout_margin="@dimen/item_inner_margin"
                     android:gravity="center_vertical"
-                    android:text="TextView"
+                    android:text="Title"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
                 <CheckBox
                     android:id="@+id/checkBox_store_item"
                     android:layout_width="30dp"
                     android:layout_height="match_parent"
-                    android:layout_margin="8dp" />
+                    android:layout_margin="@dimen/item_inner_margin" />
 
             </LinearLayout>
 
@@ -54,9 +54,8 @@
                 android:id="@+id/tv_store_item_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_margin="8dp"
-                android:text="TextView"
+                android:layout_margin="@dimen/item_inner_margin"
+                android:text="Content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         </LinearLayout>

@@ -32,17 +32,17 @@
         <item>25</item>
         <item>30</item>
     </integer-array>
-    <integer-array name="store_recent_array">
-        <item>30</item>
-        <item>15</item>
-        <item>15</item>
-        <item>10</item>
-        <item>5</item>
-        <item>20</item>
+    <integer-array name="store_date_array">
+        <item>20170713</item>
+        <item>20170516</item>
+        <item>20170711</item>
+        <item>20170524</item>
+        <item>20170525</item>
+        <item>20170630</item>
     </integer-array>
     <integer-array name="store_distance_array">
         <item>10</item>
-        <item>10</item>
+        <item>25</item>
         <item>15</item>
         <item>30</item>
         <item>50</item>

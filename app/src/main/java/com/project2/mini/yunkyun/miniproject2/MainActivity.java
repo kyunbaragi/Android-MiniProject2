@@ -26,10 +26,11 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.drawer_layout) DrawerLayout drawer;
+    @BindView(R.id.nav_view) NavigationView navigationView;
     @BindView(R.id.rv) RecyclerView recyclerView;
     @BindView(R.id.btn_distance) ImageButton btnDistance;
     @BindView(R.id.btn_popularity) ImageButton btnPopularity;
-    @BindView(R.id.btn_recent) ImageButton btnRecent;
+    @BindView(R.id.btn_recent) ImageButton btnDate;
     @BindView(R.id.btn_change_layout) ImageButton btnChangeLayout;
 
     private RecyclerAdapter adapter;
@@ -66,7 +67,6 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity
         String[] descList = getResources().getStringArray(R.array.store_desc_array);
         TypedArray imageFileList = getResources().obtainTypedArray(R.array.store_image_file_array);
         int[] popularityList = getResources().getIntArray(R.array.store_popularity_array);
-        int[] recentList = getResources().getIntArray(R.array.store_recent_array);
+        int[] recentList = getResources().getIntArray(R.array.store_date_array);
         int[] distanceList = getResources().getIntArray(R.array.store_distance_array);
 
         ArrayList<StoreItem> items = new ArrayList<>();
@@ -106,17 +106,17 @@ public class MainActivity extends AppCompatActivity
             case R.id.btn_distance:
                 btnDistance.setImageResource(R.drawable.ic_distance_focus);
                 btnPopularity.setImageResource(R.drawable.ic_popularity);
-                btnRecent.setImageResource(R.drawable.ic_recent);
+                btnDate.setImageResource(R.drawable.ic_recent);
                 break;
             case R.id.btn_popularity:
                 btnDistance.setImageResource(R.drawable.ic_distance);
                 btnPopularity.setImageResource(R.drawable.ic_popularity_focus);
-                btnRecent.setImageResource(R.drawable.ic_recent);
+                btnDate.setImageResource(R.drawable.ic_recent);
                 break;
             case R.id.btn_recent:
                 btnDistance.setImageResource(R.drawable.ic_distance);
                 btnPopularity.setImageResource(R.drawable.ic_popularity);
-                btnRecent.setImageResource(R.drawable.ic_recent_focus);
+                btnDate.setImageResource(R.drawable.ic_recent_focus);
                 break;
             case R.id.btn_change_layout:
                 if(layoutFlag) {

@@ -51,7 +51,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 Collections.sort(itemList, new Comparator<StoreItem>() {
                     @Override
                     public int compare(StoreItem o1, StoreItem o2) {
-                        return o1.getPopularity() - o2.getPopularity();
+                        return o2.getPopularity() - o1.getPopularity();
                     }
                 });
                 break;
@@ -59,7 +59,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 Collections.sort(itemList, new Comparator<StoreItem>() {
                     @Override
                     public int compare(StoreItem o1, StoreItem o2) {
-                        return o1.getDate() - o2.getDate();
+                        return o2.getDate() - o1.getDate();
                     }
                 });
                 break;
