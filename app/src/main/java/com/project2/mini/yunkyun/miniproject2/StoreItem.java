@@ -9,17 +9,17 @@ public class StoreItem {
     private String description;
     private int imageFile;
     private int popularity;
-    private int recent;
+    private int date;
     private boolean isChecked;
     private double distance;
 
-    public StoreItem(String name, String description, int imageFile, int popularity, int recent, double distance){
+    public StoreItem(String name, String description, int imageFile, int popularity, int date, double distance){
         this.name = name;
         this.description = description;
         this.imageFile = imageFile;
         this.isChecked = false;
         this.popularity = popularity;
-        this.recent = recent;
+        this.date = date;
         this.distance = distance;
     }
 
@@ -39,8 +39,8 @@ public class StoreItem {
         return popularity;
     }
 
-    public int getRecent() {
-        return recent;
+    public int getDate() {
+        return date;
     }
 
     public double getDistance() {

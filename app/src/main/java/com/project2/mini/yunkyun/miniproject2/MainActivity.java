@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         adapter.setItemList(items);
+        adapter.sortItemList(RecyclerAdapter.SORT_BY_DISTANCE);
         adapter.notifyDataSetChanged();
     }
 
@@ -130,7 +131,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @OnClick({R.id.btn_distance, R.id.btn_popularity, R.id.btn_recent, R.id.btn_change_layout})
-    void OnSortButtonClick(View view) {
+    void onButtonClick(View view) {
         int id = view.getId();
         switch (id) {
             case R.id.btn_distance:

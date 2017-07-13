@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -60,7 +59,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 Collections.sort(itemList, new Comparator<StoreItem>() {
                     @Override
                     public int compare(StoreItem o1, StoreItem o2) {
-                        return o1.getRecent() - o2.getRecent();
+                        return o1.getDate() - o2.getDate();
                     }
                 });
                 break;
@@ -69,8 +68,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         }
     }
 
-
-
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.store_item, null);
@@ -78,16 +75,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         final StoreItem item = itemList.get(position);
         holder.name.setText(item.getName());
         holder.description.setText(item.getDescription());
         Glide.with(context).load(item.getImageFile()).into(holder.image);
         holder.checkBox.setChecked(item.isChecked());
-        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        holder.checkBox.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                item.setChecked(isChecked);
+            public void onClick(View view) {
+                item.setChecked(!item.isChecked());
             }
         });
     }
