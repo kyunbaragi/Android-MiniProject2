@@ -9,11 +9,11 @@ public class StoreItem {
     private String description;
     private int imageFile;
     private int popularity;
-    private int date;
+    private long date;
     private boolean isChecked;
     private double distance;
 
-    public StoreItem(String name, String description, int imageFile, int popularity, int date, double distance){
+    public StoreItem(String name, String description, int imageFile, int popularity, long date, double distance){
         this.name = name;
         this.description = description;
         this.imageFile = imageFile;
@@ -39,7 +39,7 @@ public class StoreItem {
         return popularity;
     }
 
-    public int getDate() {
+    public long getDate() {
         return date;
     }
 

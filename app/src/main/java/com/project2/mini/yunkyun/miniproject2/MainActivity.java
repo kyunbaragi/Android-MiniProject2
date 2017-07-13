@@ -75,13 +75,13 @@ public class MainActivity extends AppCompatActivity
         String[] descList = getResources().getStringArray(R.array.store_desc_array);
         TypedArray imageFileList = getResources().obtainTypedArray(R.array.store_image_file_array);
         int[] popularityList = getResources().getIntArray(R.array.store_popularity_array);
-        int[] recentList = getResources().getIntArray(R.array.store_date_array);
+        int[] dateList = getResources().getIntArray(R.array.store_date_array);
         int[] distanceList = getResources().getIntArray(R.array.store_distance_array);
 
         ArrayList<StoreItem> items = new ArrayList<>();
         for(int i = 0; i < titleList.length; i++){
             StoreItem item = new StoreItem(titleList[i], descList[i], imageFileList.getResourceId(i, -1),
-                    popularityList[i], recentList[i], distanceList[i]);
+                    popularityList[i], dateList[i], distanceList[i]);
             items.add(item);
         }
 

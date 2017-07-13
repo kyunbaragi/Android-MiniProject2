@@ -43,7 +43,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 Collections.sort(itemList, new Comparator<StoreItem>() {
                     @Override
                     public int compare(StoreItem o1, StoreItem o2) {
-                        return (int)o1.getDistance() - (int)o2.getDistance();
+                        return Double.compare(o1.getDistance(), o2.getDistance());
                     }
                 });
                 break;
@@ -59,7 +59,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 Collections.sort(itemList, new Comparator<StoreItem>() {
                     @Override
                     public int compare(StoreItem o1, StoreItem o2) {
-                        return o2.getDate() - o1.getDate();
+                        return Long.compare(o2.getDate(), o1.getDate());
                     }
                 });
                 break;
