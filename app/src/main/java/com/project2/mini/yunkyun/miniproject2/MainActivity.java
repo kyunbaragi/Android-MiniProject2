@@ -1,5 +1,6 @@
 package com.project2.mini.yunkyun.miniproject2;
 
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,22 +13,26 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.project2.mini.yunkyun.miniproject2.R.id.rv;
-
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private Toolbar toolbar;
-    private DrawerLayout drawer;
-    private RecyclerView recyclerView;
-    private RecyclerAdapter adapter;
+    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.drawer_layout) DrawerLayout drawer;
+    @BindView(R.id.rv) RecyclerView recyclerView;
+    @BindView(R.id.btn_distance) ImageButton btnDistance;
+    @BindView(R.id.btn_popularity) ImageButton btnPopularity;
+    @BindView(R.id.btn_recent) ImageButton btnRecent;
+    @BindView(R.id.btn_change_layout) ImageButton btnChangeLayout;
 
+    private RecyclerAdapter adapter;
     private boolean layoutFlag = true;
 
     @Override
@@ -37,28 +42,25 @@ public class MainActivity extends AppCompatActivity
         ButterKnife.bind(this);
 
         setToolbar();
-        setDrawer();
         setRecyclerView();
+        setDrawer();
 
         initContents();
     }
 
-    private void setRecyclerView() {
-        recyclerView = (RecyclerView) findViewById(rv);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        adapter = new RecyclerAdapter();
-        recyclerView.setAdapter(adapter);
-    }
-
     private void setToolbar() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);;
         setSupportActionBar(toolbar);
     }
 
+    private void setRecyclerView() {
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        adapter = new RecyclerAdapter(this);
+        recyclerView.setAdapter(adapter);
+    }
+
     private void setDrawer() {
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -71,13 +73,15 @@ public class MainActivity extends AppCompatActivity
     private void initContents() {
         String[] titleList = getResources().getStringArray(R.array.store_name_array);
         String[] descList = getResources().getStringArray(R.array.store_desc_array);
+        TypedArray imageFileList = getResources().obtainTypedArray(R.array.store_image_file_array);
         int[] popularityList = getResources().getIntArray(R.array.store_popularity_array);
         int[] recentList = getResources().getIntArray(R.array.store_recent_array);
         int[] distanceList = getResources().getIntArray(R.array.store_distance_array);
 
         ArrayList<StoreItem> items = new ArrayList<>();
         for(int i = 0; i < titleList.length; i++){
-            StoreItem item = new StoreItem(titleList[i], descList[i], popularityList[i], recentList[i], distanceList[i]);
+            StoreItem item = new StoreItem(titleList[i], descList[i], imageFileList.getResourceId(i, -1),
+                    popularityList[i], recentList[i], distanceList[i]);
             items.add(item);
         }
 
@@ -96,10 +100,39 @@ public class MainActivity extends AppCompatActivity
         recyclerView.setLayoutManager(layoutManager);
     }
 
+    private void changeButtonResource(int id) {
+        switch(id){
+            case R.id.btn_distance:
+                btnDistance.setImageResource(R.drawable.ic_distance_focus);
+                btnPopularity.setImageResource(R.drawable.ic_popularity);
+                btnRecent.setImageResource(R.drawable.ic_recent);
+                break;
+            case R.id.btn_popularity:
+                btnDistance.setImageResource(R.drawable.ic_distance);
+                btnPopularity.setImageResource(R.drawable.ic_popularity_focus);
+                btnRecent.setImageResource(R.drawable.ic_recent);
+                break;
+            case R.id.btn_recent:
+                btnDistance.setImageResource(R.drawable.ic_distance);
+                btnPopularity.setImageResource(R.drawable.ic_popularity);
+                btnRecent.setImageResource(R.drawable.ic_recent_focus);
+                break;
+            case R.id.btn_change_layout:
+                if(layoutFlag) {
+                    btnChangeLayout.setImageResource(R.drawable.ic_change_grid);
+                } else {
+                    btnChangeLayout.setImageResource(R.drawable.ic_change_horizon);
+                }
+                break;
+            default:
+                break;
+        }
+    }
 
     @OnClick({R.id.btn_distance, R.id.btn_popularity, R.id.btn_recent, R.id.btn_change_layout})
     void OnSortButtonClick(View view) {
-        switch (view.getId()) {
+        int id = view.getId();
+        switch (id) {
             case R.id.btn_distance:
                 adapter.sortItemList(RecyclerAdapter.SORT_BY_DISTANCE);
                 break;
@@ -116,6 +149,7 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
         adapter.notifyDataSetChanged();
+        changeButtonResource(id);
     }
 
     @Override
@@ -131,19 +165,16 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch(id){
-            case R.id.nav_camera:
-                Toast.makeText(this, "카메라", Toast.LENGTH_SHORT).show();
+            case R.id.nav_btn_camera:
+                Toast.makeText(this, "카메라를 실행합니다.", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.nav_gallery:
-                Toast.makeText(this, "카메라를 눌렀습니다.", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_share:
-                Toast.makeText(this, "카메라를 눌렀습니다.", Toast.LENGTH_SHORT).show();
+            case R.id.nav_btn_gallery:
+                Toast.makeText(this, "갤러리를 실행합니다.", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
-        return true;
+        return false;
     }
 }

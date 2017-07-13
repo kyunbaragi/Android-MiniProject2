@@ -3,22 +3,13 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@mipmap/ic_heart"
-            android:title="Import" />
+            android:id="@+id/nav_btn_camera"
+            android:icon="@android:drawable/ic_menu_camera"
+            android:title="Camera" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@mipmap/ic_heart"
+            android:id="@+id/nav_btn_gallery"
+            android:icon="@android:drawable/ic_menu_gallery"
             android:title="Gallery" />
     </group>
-
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@mipmap/ic_heart"
-                android:title="Share" />
-        </menu>
-    </item>
 
 </menu>

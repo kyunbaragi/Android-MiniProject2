@@ -1,12 +1,16 @@
 package com.project2.mini.yunkyun.miniproject2;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,10 +25,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public static final int SORT_BY_POPULARITY = 1;
     public static final int SORT_BY_RECENT = 2;
 
-    private ArrayList<StoreItem> itemList = null;
+    private ArrayList<StoreItem> itemList;
+    private Context context;
 
-    public RecyclerAdapter() {
+    public RecyclerAdapter(Context context) {
         this.itemList = new ArrayList<>();
+        this.context = context;
     }
 
     public void setItemList(ArrayList<StoreItem> items) {
@@ -76,6 +82,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         final StoreItem item = itemList.get(position);
         holder.name.setText(item.getName());
         holder.description.setText(item.getDescription());
+        Glide.with(context).load(item.getImageFile()).into(holder.image);
         holder.checkBox.setChecked(item.isChecked());
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -91,12 +98,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView name = null;
-        private TextView description = null;
-        private CheckBox checkBox = null;
+        private ImageView image;
+        private TextView name;
+        private TextView description;
+        private CheckBox checkBox;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            image = itemView.findViewById(R.id.iv_store_image);
             name = itemView.findViewById(R.id.tv_store_item_name);
             description = itemView.findViewById(R.id.tv_store_item_desc);
             checkBox = itemView.findViewById(R.id.checkBox_store_item);
